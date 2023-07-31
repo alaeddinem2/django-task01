@@ -12,8 +12,15 @@ class Question(models.Model):
     tags = TaggableManager()
     created_at = models.TimeField(default=timezone.now())
 
+    def __str__(self) -> str:
+        return str(self.title)
+
 class Answer(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE)
     content = models.TextField(max_length=1000)
     question = models.ForeignKey(Question,on_delete=models.CASCADE)
     created_at = models.TimeField(default=timezone.now())
+
+    def __str__(self) -> str:
+        name = "answer of  " + str(self.question)
+        return name
